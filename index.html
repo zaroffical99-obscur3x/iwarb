@@ -3,1257 +3,747 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abuzar | obscur3x - Founder of iWarb</title>
-    <meta name="description" content="Abuzar (obscur3x), founder of iWarb.shop. Showcasing cybersecurity projects, web development, games, and TryHackMe certifications.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    
+    <title>Abuzar - Cybersecurity Enthusiast & Full Stack Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            /* Day Mode */
-            --day-bg-primary: #f0f4ff;
-            --day-bg-secondary: #e8f3ff;
-            --day-text: #1a1a2e;
-            --day-accent-1: #4ea8de;
-            --day-accent-2: #5390d9;
-            --day-gradient: linear-gradient(135deg, #a8dadc 0%, #457b9d 50%, #1d3557 100%);
-            --day-card-bg: rgba(255, 255, 255, 0.95);
-            --day-shadow: rgba(29, 53, 87, 0.15);
-            
-            /* Night Mode */
-            --night-bg-primary: #0d0221;
-            --night-bg-secondary: #1a0b2e;
-            --night-text: #e4e4e7;
-            --night-accent-1: #7b2cbf;
-            --night-accent-2: #c77dff;
-            --night-gradient: linear-gradient(135deg, #240046 0%, #5a189a 50%, #9d4edd 100%);
-            --night-card-bg: rgba(26, 11, 46, 0.9);
-            --night-shadow: rgba(123, 44, 191, 0.4);
-            --night-glow: #e0aaff;
-            
-            /* Active Theme */
-            --bg-primary: var(--day-bg-primary);
-            --bg-secondary: var(--day-bg-secondary);
-            --text: var(--day-text);
-            --accent-1: var(--day-accent-1);
-            --accent-2: var(--day-accent-2);
-            --theme-gradient: var(--day-gradient);
-            --card-bg: var(--day-card-bg);
-            --shadow: var(--day-shadow);
-            
-            /* Typography */
-            --font-display: 'Orbitron', sans-serif;
-            --font-body: 'Poppins', sans-serif;
-        }
-        
-        body.night-mode {
-            --bg-primary: var(--night-bg-primary);
-            --bg-secondary: var(--night-bg-secondary);
-            --text: var(--night-text);
-            --accent-1: var(--night-accent-1);
-            --accent-2: var(--night-accent-2);
-            --theme-gradient: var(--night-gradient);
-            --card-bg: var(--night-card-bg);
-            --shadow: var(--night-shadow);
-        }
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 80px;
-        }
-        
+
         body {
-            font-family: var(--font-body);
-            background: var(--bg-primary);
-            color: var(--text);
-            line-height: 1.6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
+            color: #fff;
             overflow-x: hidden;
-            transition: all 0.4s ease;
         }
-        
-        body::before {
-            content: '';
+
+        /* Animated Background Particles */
+        .particles {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: var(--theme-gradient);
-            opacity: 0.05;
-            z-index: -1;
-            animation: gradientShift 15s ease infinite;
-        }
-        
-        @keyframes gradientShift {
-            0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-20px) scale(1.1); }
-        }
-        
-        body.night-mode::after {
-            content: '';
-            position: fixed;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, var(--night-glow) 1px, transparent 1px);
-            background-size: 50px 50px;
-            opacity: 0.03;
-            animation: shimmerMove 20s linear infinite;
+            overflow: hidden;
+            z-index: 0;
             pointer-events: none;
-            z-index: -1;
         }
-        
-        @keyframes shimmerMove {
-            from { transform: translate(0, 0); }
-            to { transform: translate(50px, 50px); }
-        }
-        
-        /* Theme Toggle */
-        .theme-toggle {
-            position: fixed;
-            top: 2rem;
-            right: 2rem;
-            z-index: 1000;
-            width: 60px;
-            height: 60px;
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            border: 2px solid var(--accent-1);
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #00d4ff;
             border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 8px 32px var(--shadow);
-            transition: all 0.3s ease;
+            animation: float 15s infinite ease-in-out;
+            opacity: 0.3;
         }
-        
-        .theme-toggle:hover {
-            transform: scale(1.1) rotate(180deg);
-            box-shadow: 0 12px 48px var(--shadow);
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            25% { transform: translateY(-100px) translateX(50px); }
+            50% { transform: translateY(-200px) translateX(-50px); }
+            75% { transform: translateY(-100px) translateX(100px); }
         }
-        
-        .theme-toggle i {
-            font-size: 1.5rem;
-            background: var(--theme-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
+
         /* Hero Section */
         .hero {
-            min-height: 100vh;
+            position: relative;
+            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 2rem;
-            position: relative;
-        }
-        
-        .hero-content {
             text-align: center;
-            max-width: 1200px;
-        }
-        
-        .hero-title {
-            font-family: var(--font-display);
-            font-size: clamp(3rem, 10vw, 6rem);
-            font-weight: 900;
-            background: var(--theme-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1rem;
-            letter-spacing: -2px;
-        }
-        
-        .hero-subtitle {
-            font-size: clamp(1rem, 3vw, 1.5rem);
-            font-weight: 300;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-        
-        .hero-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.8rem;
-            padding: 1.2rem 2.5rem;
-            background: var(--theme-gradient);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            box-shadow: 0 10px 40px var(--shadow);
-            transition: all 0.3s ease;
-        }
-        
-        .hero-cta:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 50px var(--shadow);
-        }
-        
-        /* About Section - FIXED SIZING */
-        .about-section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-        }
-        
-        .about-container {
-            display: grid;
-            grid-template-columns: 350px 1fr;
-            gap: 3rem;
-            align-items: center;
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            border-radius: 30px;
-            padding: 3rem;
-            box-shadow: 0 20px 60px var(--shadow);
-        }
-        
-        /* FIXED: Anime GIF Frame with Flash Effect */
-        .about-image-wrapper {
-            position: relative;
-            width: 100%;
-            max-width: 350px;
-        }
-        
-        .about-image-frame {
-            width: 100%;
-            aspect-ratio: 1;
-            border-radius: 25px;
             overflow: hidden;
-            position: relative;
-            background: var(--theme-gradient);
-            padding: 8px;
-            box-shadow: 0 20px 60px var(--shadow);
-            animation: frameGlow 3s ease-in-out infinite;
-        }
-        
-        @keyframes frameGlow {
-            0%, 100% {
-                box-shadow: 0 20px 60px var(--shadow), 0 0 30px var(--accent-1);
-            }
-            50% {
-                box-shadow: 0 30px 80px var(--shadow), 0 0 60px var(--accent-2);
-            }
-        }
-        
-        body.night-mode .about-image-frame {
-            animation: frameGlow 3s ease-in-out infinite, neonFlash 4s ease-in-out infinite;
-        }
-        
-        @keyframes neonFlash {
-            0%, 100% {
-                filter: drop-shadow(0 0 20px var(--night-glow));
-            }
-            20%, 24%, 55%, 60% {
-                filter: drop-shadow(0 0 60px var(--night-glow)) drop-shadow(0 0 80px var(--accent-2)) brightness(1.3);
-            }
-            21%, 23%, 56%, 59% {
-                filter: drop-shadow(0 0 30px var(--night-glow));
-            }
-        }
-        
-        .about-image-frame::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%);
-            animation: shine 3s ease-in-out infinite;
-            z-index: 2;
-            pointer-events: none;
-        }
-        
-        @keyframes shine {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            20%, 100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-        }
-        
-        .about-image-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 20px;
-            display: block;
-            position: relative;
             z-index: 1;
         }
-        
-        .about-content {
-            min-width: 0;
+
+        .hero-content {
+            transform: translateY(50px);
+            opacity: 0;
+            animation: fadeInUp 1.5s forwards;
         }
-        
-        .about-title {
-            font-family: var(--font-display);
-            font-size: clamp(2rem, 4vw, 2.5rem);
-            background: var(--theme-gradient);
+
+        @keyframes fadeInUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00d4ff, #7b2ff7, #f106a5);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin-bottom: 1rem;
-            font-weight: 900;
+            animation: glow 3s ease-in-out infinite;
         }
-        
-        .about-text {
-            font-size: 1rem;
-            line-height: 1.7;
-            margin-bottom: 1rem;
-            opacity: 0.9;
+
+        @keyframes glow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.3); }
         }
-        
-        .about-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            margin: 1.5rem 0;
+
+        .hero p {
+            font-size: 1.5rem;
+            color: #b8b8b8;
+            margin-bottom: 2rem;
         }
-        
-        .stat-item {
-            text-align: center;
-            padding: 1rem;
-            background: var(--bg-secondary);
-            border-radius: 15px;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-        
-        .stat-item:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-1);
-            box-shadow: 0 10px 30px var(--shadow);
-        }
-        
-        .stat-number {
-            font-family: var(--font-display);
-            font-size: 2rem;
-            font-weight: 900;
-            background: var(--theme-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            display: block;
-        }
-        
-        .stat-label {
-            font-size: 0.8rem;
-            opacity: 0.8;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .social-links {
+
+        .cta-buttons {
             display: flex;
-            gap: 0.8rem;
-            margin-top: 1.5rem;
+            gap: 1.5rem;
+            justify-content: center;
             flex-wrap: wrap;
         }
-        
-        .social-btn {
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 0.6rem;
-            padding: 0.8rem 1.5rem;
-            background: var(--theme-gradient);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-        
-        .social-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px var(--shadow);
-        }
-        
-        /* Category Navigation - FIXED */
-        .category-nav {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            padding: 1rem 2rem;
-            box-shadow: 0 4px 20px var(--shadow);
-        }
-        
-        .category-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 0.8rem;
-        }
-        
-        .category-btn {
-            padding: 0.9rem 1rem;
-            background: var(--bg-secondary);
-            border: 2px solid transparent;
-            border-radius: 15px;
-            color: var(--text);
-            font-family: var(--font-body);
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             gap: 0.5rem;
-            white-space: nowrap;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
         }
-        
-        .category-btn:hover {
-            transform: translateY(-3px);
-            border-color: var(--accent-1);
-            box-shadow: 0 8px 20px var(--shadow);
-            background: var(--theme-gradient);
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #7b2ff7, #f106a5);
             color: white;
         }
-        
-        .category-btn.active {
-            border-color: var(--accent-1);
-            background: var(--theme-gradient);
-            color: white;
-            transform: scale(1.05);
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid #00d4ff;
+            color: #00d4ff;
         }
-        
-        .category-btn i {
-            font-size: 1.1rem;
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(123, 47, 247, 0.5);
         }
-        
-        /* Main Content */
-        .main-content {
+
+        /* Section Styles */
+        section {
+            position: relative;
+            padding: 6rem 2rem;
+            z-index: 1;
+        }
+
+        .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 3rem 2rem;
         }
-        
-        .project-section {
-            margin-bottom: 4rem;
+
+        .section-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #00d4ff, #7b2ff7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             opacity: 0;
             transform: translateY(30px);
-            transition: all 0.6s ease;
+            transition: all 0.8s ease;
         }
-        
-        .project-section.visible {
+
+        .section-title.visible {
             opacity: 1;
             transform: translateY(0);
         }
-        
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        
-        .section-title {
-            font-family: var(--font-display);
-            font-size: clamp(2rem, 4vw, 2.5rem);
-            background: var(--theme-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 900;
-            margin-bottom: 0.8rem;
-        }
-        
-        .section-description {
-            font-size: 1rem;
-            opacity: 0.8;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        /* Project Grid - FIXED */
-        .project-grid {
+
+        /* About Section */
+        .about-content {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .project-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px var(--shadow);
-            transition: all 0.4s ease;
-            border: 2px solid transparent;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent-1);
-            box-shadow: 0 20px 50px var(--shadow);
-        }
-        
-        .project-image {
-            width: 100%;
-            height: 200px;
-            background: var(--theme-gradient);
-            display: flex;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
             align-items: center;
-            justify-content: center;
-            font-size: 4rem;
         }
-        
-        .project-image i {
-            color: white;
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+
+        .about-text {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease;
         }
-        
-        .project-content {
-            padding: 1.5rem;
+
+        .about-text.visible {
+            opacity: 1;
+            transform: translateX(0);
         }
-        
-        .project-title {
-            font-family: var(--font-display);
-            font-size: 1.3rem;
-            margin-bottom: 0.8rem;
-            color: var(--text);
-            font-weight: 700;
+
+        .about-text h3 {
+            font-size: 2rem;
+            color: #00d4ff;
+            margin-bottom: 1rem;
         }
-        
-        .project-description {
-            color: var(--text);
-            opacity: 0.85;
-            margin-bottom: 1.2rem;
-            line-height: 1.6;
-            font-size: 0.95rem;
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #d0d0d0;
+            margin-bottom: 1rem;
         }
-        
-        .project-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.8rem 1.5rem;
-            background: var(--theme-gradient);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
+
+        .highlight {
+            color: #f106a5;
             font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
         }
-        
-        .project-link:hover {
-            transform: translateX(5px);
-            box-shadow: 0 8px 25px var(--shadow);
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease;
         }
-        
-        /* TryHackMe Section */
-        .thm-container {
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            border-radius: 25px;
-            padding: 3rem 2rem;
-            box-shadow: 0 20px 60px var(--shadow);
-            margin: 3rem 0;
+
+        .skills-grid.visible {
+            opacity: 1;
+            transform: translateX(0);
         }
-        
-        .thm-badge-wrapper {
-            text-align: center;
-            margin: 2rem 0;
-            padding: 2rem;
-            background: var(--bg-secondary);
-            border-radius: 20px;
-            border: 2px solid var(--accent-1);
-        }
-        
-        .thm-badge-wrapper iframe {
-            border: none;
+
+        .skill-item {
+            background: rgba(123, 47, 247, 0.1);
+            padding: 1.5rem;
             border-radius: 15px;
-            max-width: 100%;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            transition: all 0.4s ease;
         }
-        
+
+        .skill-item:hover {
+            background: rgba(123, 47, 247, 0.2);
+            border-color: #00d4ff;
+            transform: translateY(-5px);
+        }
+
+        .skill-item i {
+            font-size: 2rem;
+            color: #00d4ff;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Certifications */
         .cert-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
-        
+
         .cert-card {
-            background: var(--bg-secondary);
-            padding: 2rem 1.5rem;
+            background: linear-gradient(135deg, rgba(123, 47, 247, 0.2), rgba(0, 212, 255, 0.1));
+            padding: 2rem;
+            border-radius: 20px;
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            text-align: center;
+            transition: all 0.5s ease;
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        .cert-card.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .cert-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(123, 47, 247, 0.4);
+            border-color: #f106a5;
+        }
+
+        .cert-card i {
+            font-size: 4rem;
+            color: #f106a5;
+            margin-bottom: 1rem;
+        }
+
+        .cert-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #00d4ff;
+        }
+
+        .cert-card .btn {
+            margin-top: 1rem;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: rgba(26, 26, 46, 0.8);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid rgba(0, 212, 255, 0.2);
+            transition: all 0.5s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .project-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .project-card:hover {
+            transform: translateY(-15px);
+            border-color: #7b2ff7;
+            box-shadow: 0 25px 50px rgba(123, 47, 247, 0.4);
+        }
+
+        .project-header {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(123, 47, 247, 0.3), rgba(241, 6, 165, 0.3));
+        }
+
+        .project-header h3 {
+            font-size: 1.5rem;
+            color: #00d4ff;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-header p {
+            color: #d0d0d0;
+            font-size: 0.95rem;
+        }
+
+        .project-body {
+            padding: 1.5rem;
+        }
+
+        .project-features {
+            list-style: none;
+            margin-bottom: 1rem;
+        }
+
+        .project-features li {
+            padding: 0.5rem 0;
+            color: #b8b8b8;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .project-features li i {
+            color: #f106a5;
+        }
+
+        /* Social Links */
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .social-card {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(123, 47, 247, 0.1));
+            padding: 2rem;
             border-radius: 20px;
             text-align: center;
+            border: 2px solid rgba(0, 212, 255, 0.2);
+            transition: all 0.4s ease;
             text-decoration: none;
-            color: var(--text);
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
+            color: white;
+            opacity: 0;
+            transform: scale(0.8);
         }
-        
-        .cert-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent-1);
-            box-shadow: 0 15px 40px var(--shadow);
+
+        .social-card.visible {
+            opacity: 1;
+            transform: scale(1);
         }
-        
-        .cert-icon {
+
+        .social-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            border-color: #f106a5;
+            box-shadow: 0 15px 35px rgba(241, 6, 165, 0.4);
+        }
+
+        .social-card i {
             font-size: 3rem;
             margin-bottom: 1rem;
-            background: var(--theme-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
-        
-        .cert-title {
-            font-family: var(--font-display);
+
+        .social-card.instagram i { color: #E4405F; }
+        .social-card.linkedin i { color: #0077B5; }
+        .social-card.twitter i { color: #1DA1F2; }
+        .social-card.github i { color: #ffffff; }
+
+        .social-card h3 {
             font-size: 1.2rem;
-            font-weight: 700;
             margin-bottom: 0.5rem;
         }
-        
-        .cert-description {
-            opacity: 0.8;
+
+        .social-card p {
+            color: #b8b8b8;
             font-size: 0.9rem;
         }
-        
-        /* Contact Section */
-        .contact-section {
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            border-radius: 25px;
-            padding: 3rem 2rem;
-            box-shadow: 0 20px 60px var(--shadow);
-        }
-        
-        .contact-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1.5rem;
-            background: var(--bg-secondary);
-            border-radius: 15px;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-        
-        .contact-item:hover {
-            transform: translateX(8px);
-            border-color: var(--accent-1);
-            box-shadow: 0 8px 25px var(--shadow);
-        }
-        
-        .contact-icon {
-            font-size: 1.5rem;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--theme-gradient);
-            border-radius: 15px;
-            color: white;
-            flex-shrink: 0;
-        }
-        
-        .contact-text strong {
-            display: block;
-            font-size: 0.9rem;
-            opacity: 0.7;
-            margin-bottom: 0.3rem;
-            text-transform: uppercase;
-        }
-        
-        .copy-btn {
-            padding: 1rem 2rem;
-            background: var(--theme-gradient);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            font-family: var(--font-body);
-            font-size: 1rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            margin-top: 1.5rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-        }
-        
-        .copy-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px var(--shadow);
-        }
-        
+
         /* Footer */
-        .footer {
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            padding: 2rem;
+        footer {
+            background: rgba(10, 10, 10, 0.9);
+            padding: 3rem 2rem;
             text-align: center;
-            border-top: 2px solid var(--accent-1);
-            margin-top: 4rem;
+            border-top: 1px solid rgba(0, 212, 255, 0.2);
+            position: relative;
+            z-index: 1;
         }
-        
-        .footer p {
-            opacity: 0.8;
-            margin-bottom: 0.5rem;
+
+        footer p {
+            color: #b8b8b8;
+            font-size: 1rem;
         }
-        
-        .footer-gradient-text {
-            background: var(--theme-gradient);
+
+        footer .highlight {
+            background: linear-gradient(135deg, #00d4ff, #7b2ff7, #f106a5);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            font-weight: 700;
         }
-        
-        /* RESPONSIVE - FIXED */
-        @media (max-width: 1024px) {
-            .about-container {
-                grid-template-columns: 1fr;
-                padding: 2.5rem 2rem;
-            }
-            
-            .about-image-wrapper {
-                max-width: 300px;
-                margin: 0 auto;
-            }
-        }
-        
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .theme-toggle {
-                width: 50px;
-                height: 50px;
-                top: 1rem;
-                right: 1rem;
+            .hero h1 {
+                font-size: 3rem;
             }
-            
-            .theme-toggle i {
+
+            .hero p {
                 font-size: 1.2rem;
             }
-            
-            .category-nav {
-                padding: 1rem;
-            }
-            
-            .category-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 0.6rem;
-            }
-            
-            .category-btn {
-                padding: 0.7rem 0.8rem;
-                font-size: 0.75rem;
-                flex-direction: column;
-                gap: 0.3rem;
-            }
-            
-            .project-grid {
+
+            .about-content {
                 grid-template-columns: 1fr;
             }
-            
-            .about-stats {
-                gap: 0.8rem;
-            }
-            
-            .stat-number {
-                font-size: 1.5rem;
-            }
-            
-            .contact-info {
+
+            .skills-grid {
                 grid-template-columns: 1fr;
             }
-        }
-        
-        @media (max-width: 480px) {
-            .category-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .category-btn {
-                flex-direction: row;
-                justify-content: flex-start;
-                padding: 1rem;
+
+            .section-title {
+                font-size: 2rem;
             }
         }
     </style>
 </head>
 <body>
-    
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-        <i class="fas fa-moon" id="themeIcon"></i>
-    </button>
-    
+    <!-- Animated Background -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1 class="hero-title">ABUZAR</h1>
-            <p class="hero-subtitle">obscur3x · Founder of iWarb · Red Team Aspirant</p>
-            <a href="#about" class="hero-cta">
-                <span>Explore My Journey</span>
-                <i class="fas fa-arrow-down"></i>
-            </a>
+            <h1>ABUZAR</h1>
+            <p>Cybersecurity Enthusiast | Full Stack Developer | Creative Innovator</p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn btn-primary">
+                    <i class="fas fa-rocket"></i> View My Work
+                </a>
+                <a href="#contact" class="btn btn-secondary">
+                    <i class="fas fa-envelope"></i> Get In Touch
+                </a>
+            </div>
         </div>
     </section>
-    
-    <section class="about-section" id="about">
-        <div class="about-container">
-            <div class="about-image-wrapper">
-                <div class="about-image-frame">
-                    <img src="anime.gif" alt="Abuzar Profile" loading="lazy">
-                </div>
-            </div>
-            
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
             <div class="about-content">
-                <h2 class="about-title">About Me</h2>
-                <p class="about-text">
-                    Hey! I'm <strong>Abuzar</strong>, also known as <strong>obscur3x</strong>. 
-                    I'm the founder of <strong>iWarb</strong> and a passionate creator at the intersection of 
-                    web development, game design, and cybersecurity.
-                </p>
-                <p class="about-text">
-                    My dream is to become a master Red Team operator and build tools that empower others 
-                    while creating unforgettable digital experiences.
-                </p>
-                
-                <div class="about-stats">
-                    <div class="stat-item">
-                        <span class="stat-number">15+</span>
-                        <span class="stat-label">Projects</span>
+                <div class="about-text">
+                    <h3>Passionate Developer & Security Enthusiast</h3>
+                    <p>
+                        I'm Abuzar, a dedicated <span class="highlight">cybersecurity enthusiast</span> and 
+                        <span class="highlight">full-stack developer</span> with a passion for creating innovative 
+                        digital solutions. My journey started with learning Pre-Security fundamentals and has evolved 
+                        into mastering various aspects of cybersecurity.
+                    </p>
+                    <p>
+                        My ultimate dream is to excel on <span class="highlight">TryHackMe</span> and become a 
+                        recognized cybersecurity professional. I create websites and applications not for money, 
+                        but purely out of passion and the desire to solve real-world problems.
+                    </p>
+                    <p>
+                        I believe in <span class="highlight">learning by doing</span> and constantly challenge myself 
+                        with new projects that push my technical boundaries.
+                    </p>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <h4>Cybersecurity</h4>
+                        <p>Pre-Security & Network Security</p>
                     </div>
-                    <div class="stat-item">
-                        <span class="stat-number">3+</span>
-                        <span class="stat-label">Years Coding</span>
+                    <div class="skill-item">
+                        <i class="fas fa-code"></i>
+                        <h4>Web Development</h4>
+                        <p>Full Stack Solutions</p>
                     </div>
-                    <div class="stat-item">
-                        <span class="stat-number">∞</span>
-                        <span class="stat-label">Passion</span>
+                    <div class="skill-item">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h4>App Development</h4>
+                        <p>Cross-Platform Apps</p>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-brain"></i>
+                        <h4>Problem Solving</h4>
+                        <p>Creative Solutions</p>
                     </div>
                 </div>
-                
-                <div class="social-links">
-                    <a href="https://github.com/obscur3x" target="_blank" rel="noopener" class="social-btn">
-                        <i class="fab fa-github"></i>
-                        <span>GitHub</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications">
+        <div class="container">
+            <h2 class="section-title">Certifications</h2>
+            <div class="cert-grid">
+                <div class="cert-card">
+                    <i class="fas fa-certificate"></i>
+                    <h3>Pre Security Path</h3>
+                    <p>TryHackMe</p>
+                    <p style="color: #b8b8b8; margin: 1rem 0;">Mastered fundamental security concepts including network security, web security, and Linux basics.</p>
+                    <a href="https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-BABOY1GFHJ.pdf" target="_blank" class="btn btn-secondary">
+                        <i class="fas fa-external-link-alt"></i> View Certificate
                     </a>
-                    <a href="https://www.instagram.com/obscur3x" target="_blank" rel="noopener" class="social-btn">
-                        <i class="fab fa-instagram"></i>
-                        <span>Instagram</span>
-                    </a>
-                    <a href="https://www.linkedin.com/in/obscur3x" target="_blank" rel="noopener" class="social-btn">
-                        <i class="fab fa-linkedin"></i>
-                        <span>LinkedIn</span>
+                </div>
+                <div class="cert-card">
+                    <i class="fas fa-award"></i>
+                    <h3>Introduction to Cyber Security</h3>
+                    <p>TryHackMe</p>
+                    <p style="color: #b8b8b8; margin: 1rem 0;">Comprehensive introduction to cybersecurity principles, threat landscapes, and defensive strategies.</p>
+                    <a href="https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-HEPVTK7VB8.pdf" target="_blank" class="btn btn-secondary">
+                        <i class="fas fa-external-link-alt"></i> View Certificate
                     </a>
                 </div>
             </div>
         </div>
     </section>
-    
-    <nav class="category-nav" id="categoryNav">
-        <div class="category-grid">
-            <button class="category-btn" data-category="travel">
-                <i class="fas fa-plane"></i>
-                <span>Travel</span>
-            </button>
-            <button class="category-btn" data-category="food">
-                <i class="fas fa-utensils"></i>
-                <span>Food</span>
-            </button>
-            <button class="category-btn" data-category="schools">
-                <i class="fas fa-graduation-cap"></i>
-                <span>Schools</span>
-            </button>
-            <button class="category-btn" data-category="games">
-                <i class="fas fa-gamepad"></i>
-                <span>Games</span>
-            </button>
-            <button class="category-btn" data-category="downloader">
-                <i class="fas fa-download"></i>
-                <span>Downloader</span>
-            </button>
-            <button class="category-btn" data-category="cybersec">
-                <i class="fas fa-shield-alt"></i>
-                <span>CyberSec</span>
-            </button>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>iWarb Fast Downloader</h3>
+                        <p>Multi-Platform Media Downloader</p>
+                    </div>
+                    <div class="project-body">
+                        <ul class="project-features">
+                            <li><i class="fas fa-check"></i> Download from all major social media platforms</li>
+                            <li><i class="fas fa-check"></i> Best quality without watermarks</li>
+                            <li><i class="fas fa-check"></i> AI Background Remover tool</li>
+                            <li><i class="fas fa-check"></i> QR Code Generator</li>
+                            <li><i class="fas fa-check"></i> PDF Tools Suite</li>
+                        </ul>
+                        <a href="https://iwarb.shop" target="_blank" class="btn btn-primary">
+                            <i class="fas fa-globe"></i> Visit Website
+                        </a>
+                        <a href="https://app.iwarb.shop" target="_blank" class="btn btn-secondary" style="margin-top: 0.5rem;">
+                            <i class="fas fa-download"></i> Download App
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Urban Crust</h3>
+                        <p>Fast Food Brand Website</p>
+                    </div>
+                    <div class="project-body">
+                        <ul class="project-features">
+                            <li><i class="fas fa-check"></i> Modern restaurant website design</li>
+                            <li><i class="fas fa-check"></i> Interactive menu system</li>
+                            <li><i class="fas fa-check"></i> Responsive across all devices</li>
+                            <li><i class="fas fa-check"></i> Premium user experience</li>
+                        </ul>
+                        <a href="https://urban.iwarb.shop" target="_blank" class="btn btn-primary">
+                            <i class="fas fa-globe"></i> View Project
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Urban Sip</h3>
+                        <p>Desserts & Beverages Platform</p>
+                    </div>
+                    <div class="project-body">
+                        <ul class="project-features">
+                            <li><i class="fas fa-check"></i> Elegant dessert showcase</li>
+                            <li><i class="fas fa-check"></i> Smooth animations & transitions</li>
+                            <li><i class="fas fa-check"></i> Premium visual design</li>
+                            <li><i class="fas fa-check"></i> Optimized performance</li>
+                        </ul>
+                        <a href="https://urban.iwarb.shop/sweets.html" target="_blank" class="btn btn-primary">
+                            <i class="fas fa-globe"></i> View Project
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Dodo Coffee</h3>
+                        <p>Coffee Shop Experience</p>
+                    </div>
+                    <div class="project-body">
+                        <ul class="project-features">
+                            <li><i class="fas fa-check"></i> Immersive coffee shop website</li>
+                            <li><i class="fas fa-check"></i> Interactive product catalog</li>
+                            <li><i class="fas fa-check"></i> Modern aesthetic design</li>
+                            <li><i class="fas fa-check"></i> User-friendly navigation</li>
+                        </ul>
+                        <a href="https://dodo.iwarb.shop" target="_blank" class="btn btn-primary">
+                            <i class="fas fa-globe"></i> View Project
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>The Travel Globe</h3>
+                        <p>Luxury Travel Experience</p>
+                    </div>
+                    <div class="project-body">
+                        <ul class="project-features">
+                            <li><i class="fas fa-check"></i> Premium destination showcases</li>
+                            <li><i class="fas fa-check"></i> Luxury travel packages</li>
+                            <li><i class="fas fa-check"></i> Interactive booking system</li>
+                            <li><i class="fas fa-check"></i> VIP travel experiences</li>
+                        </ul>
+                        <button onclick="showTravelWebsite('globe')" class="btn btn-primary">
+                            <i class="fas fa-plane-departure"></i> View Website
+                        </button>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>The Limao Travel Agency</h3>
+                        <p>Adventure & Exploration</p>
+                    </div>
+                    <div class="project-body">
+                        <ul class="project-features">
+                            <li><i class="fas fa-check"></i> Adventure tour packages</li>
+                            <li><i class="fas fa-check"></i> Custom itinerary planning</li>
+                            <li><i class="fas fa-check"></i> Group travel solutions</li>
+                            <li><i class="fas fa-check"></i> Budget-friendly options</li>
+                        </ul>
+                        <button onclick="showTravelWebsite('limao')" class="btn btn-primary">
+                            <i class="fas fa-globe-asia"></i> View Website
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
-    </nav>
-    
-    <main class="main-content">
-        
-        <section id="travel" class="project-section">
-            <div class="section-header">
-                <h2 class="section-title">Travel Agency Websites</h2>
-                <p class="section-description">Beautiful, responsive websites for travel agencies with stunning visuals and seamless experiences.</p>
+    </section>
+
+    <!-- Contact & Social Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Let's Connect</h2>
+            <p style="text-align: center; color: #b8b8b8; margin-bottom: 2rem; font-size: 1.2rem;">
+                Feel free to reach out on any of these platforms!
+            </p>
+            <div class="social-grid">
+                <a href="https://instagram.com/obscur3x" target="_blank" class="social-card instagram">
+                    <i class="fab fa-instagram"></i>
+                    <h3>Instagram</h3>
+                    <p>@obscur3x</p>
+                </a>
+                <a href="https://www.linkedin.com/in/abuzar-iwarb-927794318" target="_blank" class="social-card linkedin">
+                    <i class="fab fa-linkedin"></i>
+                    <h3>LinkedIn</h3>
+                    <p>Abuzar iWarb</p>
+                </a>
+                <a href="https://twitter.com/iwarb403" target="_blank" class="social-card twitter">
+                    <i class="fab fa-twitter"></i>
+                    <h3>X / Twitter</h3>
+                    <p>@iwarb403</p>
+                </a>
+                <a href="https://github.com/zaroffical99-obscur3x" target="_blank" class="social-card github">
+                    <i class="fab fa-github"></i>
+                    <h3>GitHub</h3>
+                    <p>zaroffical99-obscur3x</p>
+                </a>
             </div>
-            <div class="project-grid">
-                <div class="project-card">
-                    <div class="project-image" style="background: linear-gradient(135deg, #4ea8de, #fb8500);">
-                        <i class="fas fa-plane-departure"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Urban Travels</h3>
-                        <p class="project-description">Stunning travel agency website with modern design and vibrant accents. Features booking system and destination gallery.</p>
-                        <a href="https://travels.iwarb.shop" target="_blank" rel="noopener" class="project-link">
-                            <span>View Project</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image" style="background: linear-gradient(135deg, #5e60ce, #4ea8de);">
-                        <i class="fas fa-globe-americas"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Globe Travel Agency</h3>
-                        <p class="project-description">Modern travel platform with beautiful gradients. Includes trip planner, booking system and customer reviews.</p>
-                        <a href="https://globe.iwarb.shop" target="_blank" rel="noopener" class="project-link">
-                            <span>View Project</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section id="food" class="project-section">
-            <div class="section-header">
-                <h2 class="section-title">Food Websites</h2>
-                <p class="section-description">Delicious designs for restaurants and food businesses that make visitors hungry.</p>
-            </div>
-            <div class="project-grid">
-                <div class="project-card">
-                    <div class="project-image" style="background: linear-gradient(135deg, #ff6b6b, #ee5a6f, #c44569);">
-                        <i class="fas fa-pizza-slice"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Urban Restaurant</h3>
-                        <p class="project-description">Elegant restaurant website with online menu, table reservations, and beautiful food photography galleries.</p>
-                        <a href="https://urban.iwarb.shop" target="_blank" rel="noopener" class="project-link">
-                            <span>View Project</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image" style="background: linear-gradient(135deg, #ff6b6b, #ee5a6f, #c44569);">
-                        <i class="fas fa-drumstick-bite"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">DoDo Restaurant</h3>
-                        <p class="project-description">Modern restaurant platform featuring online ordering, location finder, and seamless dining experience.</p>
-                        <a href="https://dodo.iwarb.shop" target="_blank" rel="noopener" class="project-link">
-                            <span>View Project</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image" style="background: linear-gradient(135deg, #ff6b6b, #ee5a6f, #c44569);">
-                        <i class="fas fa-cookie-bite"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Urban Sweets</h3>
-                        <p class="project-description">Delightful sweets and desserts website with mouth-watering visuals and online ordering system.</p>
-                        <a href="https://urban.iwarb.shop/sweets.html" target="_blank" rel="noopener" class="project-link">
-                            <span>View Project</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section id="schools" class="project-section">
-            <div class="section-header">
-                <h2 class="section-title">School & Education Websites</h2>
-                <p class="section-description">Educational platforms designed to inspire learning and connect communities.</p>
-            </div>
-            <div class="project-grid">
-                <div class="project-card">
-                    <div class="project-image" style="background: linear-gradient(135deg, #00b4d8, #0077b6, #023e8a);">
-                        <i class="fas fa-school"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Bright Future Academy</h3>
-                        <p class="project-description">Comprehensive school website with student portal, course catalog, attendance system, and parent communication.</p>
-                        <a href="https://schools.iwarb.shop" target="_blank" rel="noopener" class="project-link">
-                            <span>View Project</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image" style="background: linear-gradient(135deg, #00b4d8, #0077b6, #023e8a);">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Tech Learning Hub</h3>
-                        <p class="project-description">Online learning platform with interactive courses, progress tracking, video lessons, and certificates.</p>
-                        <a href="https://learn.iwarb.shop" target="_blank" rel="noopener" class="project-link">
-                            <span>View Project</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section id="games" class="project-section">
-            <div class="section-header">
-                <h2 class="section-title">Games</h2>
-                <p class="section-description">Interactive browser games built with pure creativity and code.</p>
-            </div>
-            <div class="project-grid">
-                <div class="project-card">
-                    <div class="project-image" style="background: linear-gradient(135deg, #8338ec, #b185db, #ff006e);">
-                        <i class="fas fa-gamepad"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">iWarb Games Collection</h3>
-                        <p class="project-description">Collection of addictive browser games with stunning visuals, power-ups, and leaderboards. Built with pure JavaScript.</p>
-                        <a href="https://iwarbgames.iwarb.shop" target="_blank" rel="noopener" class="project-link">
-                            <span>Play Games</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section id="downloader" class="project-section">
-            <div class="section-header">
-                <h2 class="section-title">iWarb Tools & Apps</h2>
-                <p class="section-description">Powerful tools and applications built for speed, efficiency, and user experience.</p>
-            </div>
-            <div class="project-grid">
-                <div class="project-card">
-                    <div class="project-image" style="background: linear-gradient(135deg, #ffd60a, #ffc300, #fb8500);">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">iWarb Fast Downloader</h3>
-                        <p class="project-description">Powerful multi-threaded download accelerator with resume capability, queue management, and intelligent bandwidth optimization.</p>
-                        <a href="https://iwarb.shop" class="project-link" target="_blank" rel="noopener">
-                            <span>Visit Site</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image" style="background: linear-gradient(135deg, #06ffa5, #00d9ff, #ffd60a);">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">iWarb Mobile App</h3>
-                        <p class="project-description">Download the official iWarb mobile application for Android. Fast, secure, and feature-rich experience on the go.</p>
-                        <a href="https://app.iwarb.shop" class="project-link" target="_blank" rel="noopener">
-                            <span>Download App</span>
-                            <i class="fas fa-download"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section id="cybersec" class="project-section">
-            <div class="section-header">
-                <h2 class="section-title">CyberSecurity & Achievements</h2>
-                <p class="section-description">My journey in offensive security, penetration testing, and continuous learning.</p>
-            </div>
-            
-            <div class="thm-container">
-                <h3 style="font-family: var(--font-display); font-size: 2rem; text-align: center; margin-bottom: 2rem;">
-                    <i class="fas fa-flag-checkered"></i> TryHackMe Profile
-                </h3>
-                
-                <div class="thm-badge-wrapper">
-                    <iframe 
-                        src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=4732891" 
-                        width="400" 
-                        height="150"
-                        loading="lazy"
-                        title="TryHackMe Badge">
-                    </iframe>
-                </div>
-                
-                <h4 style="font-family: var(--font-display); font-size: 1.8rem; text-align: center; margin: 3rem 0 2rem;">
-                    <i class="fas fa-certificate"></i> Certifications
-                </h4>
-                
-                <div class="cert-grid">
-                    <a href="https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-BABOY1GFHJ.pdf" 
-                       target="_blank" rel="noopener" class="cert-card">
-                        <i class="fas fa-award cert-icon"></i>
-                        <h5 class="cert-title">TryHackMe Certificate</h5>
-                        <p class="cert-description">View Achievement (PDF)</p>
-                    </a>
-                    <a href="https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-HEPVTK7VB8.pdf" 
-                       target="_blank" rel="noopener" class="cert-card">
-                        <i class="fas fa-medal cert-icon"></i>
-                        <h5 class="cert-title">TryHackMe Certificate</h5>
-                        <p class="cert-description">View Achievement (PDF)</p>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="project-grid" style="margin-top: 3rem;">
-                <div class="project-card">
-                    <div class="project-image" style="background: linear-gradient(135deg, #06ffa5, #00d9ff, #7b2cbf);">
-                        <i class="fas fa-bug"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Web Penetration Testing</h3>
-                        <p class="project-description">Comprehensive security assessments including SQL injection, XSS, CSRF, and authentication bypass techniques.</p>
-                        <a href="https://security.iwarb.shop" target="_blank" rel="noopener" class="project-link">
-                            <span>Learn More</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image" style="background: linear-gradient(135deg, #06ffa5, #00d9ff, #7b2cbf);">
-                        <i class="fas fa-network-wired"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Network Security Tools</h3>
-                        <p class="project-description">Custom tools for network scanning, vulnerability assessment, and traffic analysis using Python and Bash.</p>
-                        <a href="https://github.com/obscur3x" target="_blank" rel="noopener" class="project-link">
-                            <span>View GitHub</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image" style="background: linear-gradient(135deg, #06ffa5, #00d9ff, #7b2cbf);">
-                        <i class="fas fa-flag"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">CTF Writeups & Labs</h3>
-                        <p class="project-description">Detailed walkthroughs of Capture The Flag challenges and hands-on security labs showcasing hacking skills.</p>
-                        <a href="https://ctf.iwarb.shop" target="_blank" rel="noopener" class="project-link">
-                            <span>Read More</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section id="contact" class="project-section">
-            <div class="contact-section">
-                <h2 class="section-title" style="text-align: center;">Let's Connect</h2>
-                <p style="text-align: center; font-size: 1.1rem; opacity: 0.85; margin-bottom: 2rem;">
-                    Ready to collaborate or just want to say hi? Reach out!
-                </p>
-                
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="contact-text">
-                            <strong>Email</strong>
-                            <p>contact@iwarb.shop</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div class="contact-text">
-                            <strong>Phone</strong>
-                            <p>+92 XXX XXXXXXX</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-globe"></i>
-                        </div>
-                        <div class="contact-text">
-                            <strong>Website</strong>
-                            <p>iwarb.shop</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div style="text-align: center;">
-                    <button class="copy-btn" id="copyBtn">
-                        <i class="fas fa-copy"></i>
-                        <span>Copy Contact Info</span>
-                    </button>
-                </div>
-            </div>
-        </section>
-        
-    </main>
-    
-    <footer class="footer">
-        <div class="footer-content">
-            <p>&copy; 2024 <span class="footer-gradient-text">Abuzar (obscur3x)</span> · Founder of iWarb</p>
-            <p style="margin-top: 0.5rem;">Built with passion, code, and endless creativity</p>
         </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>
+            Crafted with passion by <span class="highlight">Abuzar</span> | 
+            Creating digital experiences for the love of technology
+        </p>
+        <p style="margin-top: 1rem; color: #666;">
+            © 2024 All Rights Reserved
+        </p>
     </footer>
-    
+
     <script>
-        // Theme Toggle
-        const themeToggle = document.getElementById('themeToggle');
-        const themeIcon = document.getElementById('themeIcon');
-        
-        // Check system preference
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            document.body.classList.add('night-mode');
-            themeIcon.className = 'fas fa-sun';
+        // Create floating particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            particlesContainer.appendChild(particle);
         }
-        
-        themeToggle.addEventListener('click', () => {
-            const isNight = document.body.classList.toggle('night-mode');
-            themeIcon.className = isNight ? 'fas fa-sun' : 'fas fa-moon';
-        });
-        
-        // Category Navigation - FIXED ROUTING
-        const categoryButtons = document.querySelectorAll('.category-btn');
-        
-        categoryButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const category = btn.dataset.category;
-                const section = document.getElementById(category);
-                
-                // Update active state
-                categoryButtons.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                
-                // Smooth scroll to section
-                if (section) {
-                    section.scrollIntoView({ 
-                        behavior: 'smooth', 
-                        block: 'start' 
-                    });
-                }
-            });
-        });
-        
-        // Scroll Animations
+
+        // Intersection Observer for scroll animations
         const observerOptions = {
             threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+            rootMargin: '0px 0px -100px 0px'
         };
-        
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1261,70 +751,43 @@
                 }
             });
         }, observerOptions);
-        
-        document.querySelectorAll('.project-section').forEach(el => {
+
+        // Observe all animated elements
+        document.querySelectorAll('.section-title, .about-text, .skills-grid, .cert-card, .project-card, .social-card').forEach(el => {
             observer.observe(el);
         });
-        
-        // Copy Contact Info
-        const copyBtn = document.getElementById('copyBtn');
-        
-        copyBtn.addEventListener('click', async () => {
-            const contactInfo = `Abuzar (obscur3x)
-Founder of iWarb
-━━━━━━━━━━━━━━━━━━━━
-📧 Email: contact@iwarb.shop
-📱 Phone: +92 XXX XXXXXXX
-🌐 Website: https://iwarb.shop
-📸 Instagram: @obscur3x
-💼 LinkedIn: linkedin.com/in/obscur3x
-🐙 GitHub: github.com/obscur3x`;
-            
-            try {
-                await navigator.clipboard.writeText(contactInfo);
-                
-                const originalHTML = copyBtn.innerHTML;
-                copyBtn.innerHTML = '<i class="fas fa-check"></i><span>Copied!</span>';
-                copyBtn.style.background = 'linear-gradient(135deg, #06ffa5, #00d9ff)';
-                
-                setTimeout(() => {
-                    copyBtn.innerHTML = originalHTML;
-                    copyBtn.style.background = '';
-                }, 2500);
-            } catch (err) {
-                alert('Contact Info:\n\n' + contactInfo);
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add parallax effect to hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero-content');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+                hero.style.opacity = 1 - (scrolled / 700);
             }
         });
-        
-        // Smooth scroll for hero CTA
-        document.querySelector('.hero-cta').addEventListener('click', (e) => {
-            e.preventDefault();
-            document.getElementById('about').scrollIntoView({ 
-                behavior: 'smooth',
-                block: 'start'
-            });
+
+        // Add staggered animation delays to cards
+        document.querySelectorAll('.project-card').forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.1}s`;
         });
-        
-        // Update active category on scroll
-        const sections = document.querySelectorAll('.project-section');
-        
-        window.addEventListener('scroll', () => {
-            let current = '';
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (window.pageYOffset >= sectionTop - 200) {
-                    current = section.getAttribute('id');
-                }
-            });
-            
-            categoryButtons.forEach(btn => {
-                btn.classList.remove('active');
-                if (btn.dataset.category === current) {
-                    btn.classList.add('active');
-                }
-            });
+
+        document.querySelectorAll('.social-card').forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.1}s`;
         });
     </script>
 </body>
